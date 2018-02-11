@@ -83,7 +83,14 @@ var Engine = (function(global) {
    * on the entities themselves within your app.js file).
    */
   function update(dt) {
-    player.checkCollisions(allEnemies);
+    //check collisions with enemies
+    if (player.checkCollisions(allEnemies) === true)
+      player.setAlive(false);
+    //check "collisions" with gem
+    if (player.checkCollisions([gem]) === true) {
+      player.updateScore(20); //update score
+      gem.getNewGem(); //get new gem
+    }
     updateEntities(dt);
   }
 
@@ -181,6 +188,8 @@ var Engine = (function(global) {
 
     player.render();
     player.renderScore(); //show score
+
+    gem.render();
   }
 
   /* This function does nothing but it could have been a good place to
@@ -200,7 +209,10 @@ var Engine = (function(global) {
     'images/water-block.png',
     'images/grass-block.png',
     'images/enemy-bug.png',
-    'images/char-pink-girl.png'
+    'images/char-pink-girl.png',
+    'images/Gem Blue.png',
+    'images/Gem Green.png',
+    'images/Gem Orange.png'
   ]);
   Resources.onReady(init);
 
@@ -215,9 +227,12 @@ var Engine = (function(global) {
    */
   window.addEventListener('keyup', function(e) {
     if (e.keyCode === 13) {
-      player.resetPosition();
-      player.score = 0;
-      player.alive = true;
+      player.reset(); //reset player to default
+      //reset all enemies
+      allEnemies.forEach(function(enemy) {
+        enemy.reset();
+      });
+      gem.getNewGem(); //set new gem
       //restart animation
       main();
     }

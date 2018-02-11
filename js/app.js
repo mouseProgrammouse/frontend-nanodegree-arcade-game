@@ -67,17 +67,24 @@ Player.prototype.renderScore = function() {
   ctx.fillText(this.score, 450, 40);
 }
 
+//update score
+Player.prototype.updateScore = function(value) {
+  this.score += value;
+}
+
 // Collision detection.
 // When player and enemy occupy the same space,
 // the player will die
 //objects - array of objects which located on the board (enemy or gems)
 Player.prototype.checkCollisions = function(objects) {
   const player = this;
+  let result = false;
   objects.forEach(function(object) {
     //compare position
     if ((Math.abs(object.x - player.x) < 80) && (Math.abs(object.y - player.y) < 60))
-      player.alive = false; //player is die:(
+      result = true; //collision
   });
+  return result;
 }
 
 
@@ -85,6 +92,16 @@ Player.prototype.checkCollisions = function(objects) {
 Player.prototype.resetPosition = function() {
   this.x = 205;
   this.y = 300;
+}
+
+//reset player to default
+//set x,y by defaul
+//score = 0
+//alive is true
+Player.prototype.reset = function() {
+  this.resetPosition();
+  this.score = 0;
+  this.alive = true;
 }
 
 //Update location of player
@@ -100,11 +117,15 @@ Player.prototype.update = function() {
   //reset player back to the initial position
   if (this.y < 0) {
     //show popup
-    //alert('Win!');
     this.score += 10;
     this.resetPosition();
   }
 };
+
+//set value to alive
+Player.prototype.setAlive = function(value) {
+  this.alive = value;
+}
 
 //move the player according to input key
 Player.prototype.handleInput = function(keyCode) {
@@ -126,6 +147,47 @@ Player.prototype.handleInput = function(keyCode) {
   }
 };
 
+//Collectibles
+//gems to the game, allowing the player to collect them to make the game more interesting.
+var Collectible = function() {
+  this.sprites = 'images/Gem Blue.png'; //sprite by default
+  this.x = 0;
+  this.y = 0;
+}
+
+//inherit
+Collectible.prototype = Object.create(Enemy.prototype);
+
+//Change sprite
+Collectible.prototype.setRandomSprite = function() {
+  const sprites = [
+    'images/Gem Blue.png',
+    'images/Gem Green.png',
+    'images/Gem Orange.png'
+  ];
+  //generate random position (0 to 2)
+  const i = Math.floor(Math.random() * 3);
+  this.sprite = sprites[i];
+}
+
+//set random position
+Collectible.prototype.setRandomPosition = function() {
+  //generate random position x y on the board
+  //y will be 0-2
+  const y = Math.floor(Math.random() * 3);
+  //x will be 0-4
+  const x = Math.floor(Math.random() * 5);
+  this.y = y * 80 + 60;
+  this.x = x * 101;
+}
+
+//set random sprite
+//set new random position 
+Collectible.prototype.getNewGem = function() {
+  this.setRandomSprite();
+  this.setRandomPosition();
+}
+
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
@@ -135,6 +197,8 @@ const allEnemies = [];
 for (let i = 0; i < count; i++) {
   allEnemies.push(new Enemy());
 }
+const gem = new Collectible();
+gem.getNewGem();
 const player = new Player();
 
 
