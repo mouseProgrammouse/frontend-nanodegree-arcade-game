@@ -24,9 +24,9 @@ This game is part of the [Front-End Web Developer Nanodegree Program](https://eu
 
 ## Screenshots
 
-  ![game](/screenshots/game.png)
-  ![gems](/screenshots/gems.png)
-  ![game-over](/screenshots/game-over.png)
+  <img src="https://github.com/mouseProgrammouse/frontend-nanodegree-arcade-game/blob/master/screenshots/game.png" width="480">
+    <img src="https://github.com/mouseProgrammouse/frontend-nanodegree-arcade-game/blob/master/screenshots/gems.png" width="480">
+      <img src="https://github.com/mouseProgrammouse/frontend-nanodegree-arcade-game/blob/master/screenshots/game-over.png" width="480">
 
 ## Description
 
