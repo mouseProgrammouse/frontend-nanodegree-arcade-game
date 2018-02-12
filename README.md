@@ -6,6 +6,7 @@ This game is part of the [Front-End Web Developer Nanodegree Program](https://eu
 
 * [Rules of the game](#rules-of-the-game)
 * [How to play](#how-to-play)
+* [How to run](#how-to-run)
 * [Screenshots](#screenshots)
 * [Description](#description)
 
@@ -19,8 +20,15 @@ This game is part of the [Front-End Web Developer Nanodegree Program](https://eu
 
 ## How to play
 
-  press "Enter" - for new game
+  press "Enter" - for new game;
+
   ⬆️ ⬇️ ⬅️ ➡️use arrow keys to move
+
+## How to run app
+
+  Clone the [repo](https://github.com/mouseProgrammouse/frontend-nanodegree-arcade-game) and open index.html
+
+  Play on GitHub.io: [Arcade game](https://mouseprogrammouse.github.io/frontend-nanodegree-arcade-game/)
 
 ## Screenshots
 

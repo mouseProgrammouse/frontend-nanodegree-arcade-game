@@ -59,6 +59,8 @@ var Player = function() {
 
 //inherit
 Player.prototype = Object.create(Enemy.prototype);
+//reset the constructor property
+Player.prototype.constructor = Player;
 
 //Show current score on board
 Player.prototype.renderScore = function() {
@@ -157,6 +159,8 @@ var Collectible = function() {
 
 //inherit
 Collectible.prototype = Object.create(Enemy.prototype);
+//reset the constructor property
+Collectible.prototype.constructor = Collectible;
 
 //Change sprite
 Collectible.prototype.setRandomSprite = function() {
@@ -182,7 +186,7 @@ Collectible.prototype.setRandomPosition = function() {
 }
 
 //set random sprite
-//set new random position 
+//set new random position
 Collectible.prototype.getNewGem = function() {
   this.setRandomSprite();
   this.setRandomPosition();
